@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="Viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>Quote of the day</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="quote-box">
+            <h2>Quote of the day</h2>
+            <blockquote id="quote">Loading...</blockquote>
+            <span id="author">Loading...</span>
+            <div>
+                <button id="btnRefresh" type="button">New Quote</button>
+                <button type="submit"><img src="search.png">Search</button>
+            </div>
+        </div>
+        <script>
+            const quote = document.getElementById("quote");
+            const author = document.getElementById("author");
+            const api_url = "https://api.quotable.io/random";
+            async function getquote(url){
+                const response = await fetch(url);
+                var data = await response.json();
+                
+                quote.innerHTML=data.content;
+                author.innerHTML=data.author;
+                
+        }
+        getquote(api_url);
+        </script>
+        <script>
+            const refreshBtn = document.getElementById("btnRefresh");
+                function handleClick(){
+                    window.location.reload();
+                }
+                refreshBtn.addEventListener("click",handleClick);
+        
+        </script>
+        
+         
+    </body>
+</html>
